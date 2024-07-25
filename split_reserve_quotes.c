@@ -54,6 +54,8 @@ char	**split_reserve_quotes(char *input, int *count)
 		buffer[j] = '\0';
 		result[n++] = ft_strdup(buffer);
 	}
+	result[n] = NULL;
+	free(buffer);
 	*count = n;
 	return (result);
 }
