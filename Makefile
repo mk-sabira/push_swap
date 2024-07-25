@@ -13,7 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-LIBFT = libft/libft.a
+LIBFT = libft2/libft.a
 
 NAME = push_swap
 SRC = push_swap.c add_node.c valid_and_init.c split.c free_stack.c \
@@ -30,14 +30,14 @@ $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -o $(NAME)
 
 $(LIBFT):
-	make -C libft
+	make -C libft2
 
 clean:
 	rm -rf $(OBJ)
-	make -C libft clean
+	make -C libft2 clean
 
 fclean: clean
-	make -C libft clean
+	make -C libft2 clean
 	rm -rf $(NAME)
 
 re: fclean all

@@ -164,4 +164,5 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b, t_data *data)
 		sort_three(stack_a);
 	push_to_a(stack_a, stack_b, &data);
 	do_rot_sort(stack_a, data, 1);
+	free (data);
 }

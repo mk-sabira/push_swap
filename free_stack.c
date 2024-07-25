@@ -22,7 +22,7 @@ void	free_stack(t_stack **stack)
 		return ;
 	current = *stack;
 	start = *stack;
-	while (current != NULL)
+	while (1)
 	{
 		next = current->next;
 		free(current);

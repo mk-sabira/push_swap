@@ -36,6 +36,9 @@ int	main(int arc, char **arv)
 			}
 		}
 	}
-	free_stack(&stack_a);
+	if (stack_a)
+		free_stack(&stack_a);
+	// if (data)
+	// 	free(data);
 	return (0);
 }

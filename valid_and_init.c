@@ -55,17 +55,28 @@ void	parsing_checking( char **input, t_stack **stack)
 			{
 				write(1, "Input out of INT range\n", 23);
 				if (*stack)
-					free(stack);
+					free_stack(stack);
 				exit (1);
 			}
 			nb = (int) nb_ll;
 		}
 		else
-			free_write(stack);
+		{
+			write (1, "Non digit input\n", 16);
+			if (*stack)
+				free_stack(stack);
+			free_double_pointer(input);
+			exit (1);
+		}
 		if (!check_duplication(*stack, nb))
 			add_node(stack, nb);
 		else
-			free_write(stack);
+		{
+			write (1, "dup\n", 4);
+			free_double_pointer(input);
+			free_stack(stack);
+			exit (1);
+		}
 		i++;
 	}
 }
@@ -78,10 +89,7 @@ void	valid_and_init(int arc, char **arv, t_stack **stack)
 
 	input = NULL;
 	if (arc == 2)
-	{
 		input = ft_split(arv[1]);
-		error_message(input);
-	}
 	else if (arc > 2)
 	{
 		combined = concat_args(arc, arv);
