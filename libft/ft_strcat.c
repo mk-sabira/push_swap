@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoll.c                                         :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 12:17:58 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/16 12:17:59 by bmakhama         ###   ########.fr       */
+/*   Created: 2024/07/16 12:18:10 by bmakhama          #+#    #+#             */
+/*   Updated: 2024/07/26 11:35:41 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long	ft_atoll(const char *str)
+char	*ft_strcat(char *dest, const char *src)
 {
-	long long	r;
-	long long	x;
-	int			s;
+	size_t	dest_len;
+	size_t	i;
 
-	s = 1;
-	r = 0;
-	while ((*str == 32) || (*str >= 9 && *str <= 13))
-		str++;
-	if ((*str == '-') || (*str == '+'))
+	dest_len = ft_strlen(dest);
+	i = 0;
+	while (src[i] != '\0')
 	{
-		if (*str == '-')
-			s = -1;
-		str++;
+		dest[dest_len + i] = src[i];
+		i++;
 	}
-	while ((*str >= '0') && (*str <= '9'))
-	{
-		x = r;
-		r = r * 10 + (*str - '0') * s;
-		str++;
-		if ((r > x) && (s < 0))
-			return (0);
-		if ((r < x) && (s > 0))
-			return (-1);
-	}
-	return (r);
+	dest[dest_len + i] = '\0';
+	return (dest);
 }

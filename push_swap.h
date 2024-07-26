@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:30:40 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/25 12:34:40 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:51:36 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "./libft2/libft.h"
-#include "stdio.h"
+# include "./libft/libft.h"
 
 typedef struct s_stack
 {
@@ -39,6 +38,17 @@ typedef struct s_data
 	int	rb;	
 }	t_data;
 
+typedef struct s_split_data
+{
+	char	**result;
+	char	*buffer;
+	int		in_quotes;
+	int		j;
+	int		n;
+	int		i;
+	int		len;
+}	t_s_data;
+
 // input validation and initialization of stack
 char	**ft_split(char *str);
 char	**split_reserve_quotes(char *input, int *count);
@@ -50,8 +60,9 @@ void	valid_and_init(int arc, char **arv, t_stack **stack);
 // freeing stack
 void	free_stack(t_stack **stack);
 void	error_message(char **memory);
-void 	free_write(t_stack **stack);
+void	free_write(t_stack **stack);
 void	free_double_pointer(char **ptr);
+void	free_stack_input(t_stack **stack, char **input);
 
 //operations
 void	ft_pa(t_stack **stack_b, t_stack **stack_a);
@@ -76,13 +87,15 @@ t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
 
 //finding cheapest move
-int	moves_a(t_data **data, int i);
+int		moves_a(t_data **data, int i);
 int		moves_b(t_stack *stack_b, int nb_a, t_data *data);
 int		ft_or(int ab);
 int		total_r_rr(int ra, int rb);
+void	total_move(t_stack *stack_a, t_stack *stack_b, t_data **data);
 void	cheap_pb(t_stack **stack_a, t_stack **stack_b, t_data **data);
 void	total_move(t_stack *stack_a, t_stack *stack_b, t_data **data);
-int 	max_nb(t_stack *stack);
+int		max_nb(t_stack *stack);
 int		min_nb(t_stack *stack);
+int		do_rot_sort(t_stack **stack_a, t_data *data, int sort);
 
 #endif

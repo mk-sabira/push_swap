@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 18:46:28 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/24 14:16:38 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:00:25 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ void	ft_push(t_stack **src, t_stack **dest)
 {
 	t_stack	*temp;
 
+	temp = *src;
 	if (*src == NULL)
 		return ;
-	temp = *src;
-	if (*src == (*src)->next)
-		*src = NULL;
 	else
 	{
 		*src = (*src)->next;

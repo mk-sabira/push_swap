@@ -6,11 +6,12 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:35:57 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/25 12:34:55 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:51:29 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "limits.h"
 
 char	*concat_args(int arc, char **arv)
 {
@@ -50,33 +51,17 @@ void	parsing_checking( char **input, t_stack **stack)
 	{
 		if (is_valid_nb(input[i]))
 		{
-			nb_ll = ft_atoi(input[i]);
+			nb_ll = ft_atoll(input[i]);
 			if (nb_ll < INT_MIN || nb_ll > INT_MAX)
-			{
-				write(1, "Input out of INT range\n", 23);
-				if (*stack)
-					free_stack(stack);
-				exit (1);
-			}
+				free_stack_input(stack, input);
 			nb = (int) nb_ll;
 		}
 		else
-		{
-			write (1, "Non digit input\n", 16);
-			if (*stack)
-				free_stack(stack);
-			free_double_pointer(input);
-			exit (1);
-		}
+			free_stack_input(stack, input);
 		if (!check_duplication(*stack, nb))
 			add_node(stack, nb);
 		else
-		{
-			write (1, "dup\n", 4);
-			free_double_pointer(input);
-			free_stack(stack);
-			exit (1);
-		}
+			free_stack_input(stack, input);
 		i++;
 	}
 }
