@@ -6,12 +6,12 @@
 #    By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/08 09:30:18 by bmakhama          #+#    #+#              #
-#    Updated: 2024/07/26 10:39:40 by bmakhama         ###   ########.fr        #
+#    Updated: 2024/07/29 12:29:49 by bmakhama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 
 LIBFT = libft/libft.a
 
@@ -27,17 +27,20 @@ OBJ = ${SRC:.c=.o}
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(LIBFT) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -o  $(NAME) $(LIBFT) $(OBJ)
 
 $(LIBFT):
 	make -C libft
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
 	make -C libft clean
 
 fclean: clean
-	make -C libft clean
+	make -C libft fclean
 	rm -rf $(NAME)
 
 re: fclean all

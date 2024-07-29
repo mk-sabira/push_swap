@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 10:20:19 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/26 11:57:13 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/29 11:10:21 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			ft_isdigit(int c);
 int			ft_isprint(int c);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
+int			ft_isspace(char c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_atoi(const char *str);
@@ -56,6 +57,6 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+long		ft_atoll(const char *str);
 
-long long	ft_atoll(const char *str);
 #endif
