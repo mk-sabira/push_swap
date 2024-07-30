@@ -4,6 +4,8 @@ void	ft_swap(t_stack **stack)
 {
 	int	temp;
 
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+        return ;
 	temp = (*stack)->nb;
 	(*stack)->nb = (*stack)->next->nb;
 	(*stack)->next->nb = temp;
