@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:35:57 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/29 12:27:30 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:52:54 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	parsing_checking( char **input, t_stack **stack)
 		if (is_valid_nb(input[i]))
 		{
 			nb_l = ft_atoll(input[i]);
-			if (nb < INT_MIN || nb > INT_MAX)
+			if (nb_l < INT_MIN || nb_l > INT_MAX)
 				free_stack_input(stack, input);
 			nb = (int) nb_l;
 		}

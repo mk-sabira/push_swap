@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 09:30:40 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/26 11:51:36 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:30:12 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include "./libft/libft.h"
-# include "stdio.h"
 
 typedef struct s_stack
 {

@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:12:59 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/31 14:03:37 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:06:53 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_apply_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
 	result = execute_operation(stack_a, stack_b, get_op);
 	if (result == 1)
 	{
-		write(1, "KO\n", 3);
+		write(1, "Error\n", 6);
 		free_stack(stack_a);
 		free_stack(stack_b);
 		return (2);
