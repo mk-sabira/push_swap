@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:16:30 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/07/26 10:45:04 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 12:02:51 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	get_size(t_stack *stack)
 void	ft_swap(t_stack **stack)
 {
 	int	temp;
+
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-        return ;
+		return ;
 	temp = (*stack)->nb;
 	(*stack)->nb = (*stack)->next->nb;
 	(*stack)->next->nb = temp;

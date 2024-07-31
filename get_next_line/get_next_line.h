@@ -6,7 +6,7 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 12:48:41 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/01/31 18:59:24 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:05:01 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@
 #  define BUFFER_SIZE 3
 # endif
 
-// char	*get_next_line(int fd);
 char	*get_next_line(int fd, int flag);
-
-// char	*ft_strjoin(char *s1, char *s2);
-// char	*ft_strchr(char *s, int c);
-// size_t	ft_strlen(char *str);
 
 #endif

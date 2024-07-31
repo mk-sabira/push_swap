@@ -6,17 +6,31 @@
 /*   By: bmakhama <bmakhama@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 12:47:03 by bmakhama          #+#    #+#             */
-/*   Updated: 2024/02/05 12:52:01 by bmakhama         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:34:23 by bmakhama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "../libft/libft.h"
 
+char	*append_buffer_to_line(char *line, char *get_buff)
+{
+	char	*temp;
+
+	temp = ft_strjoin(line, get_buff);
+	if (!temp)
+	{
+		free(get_buff);
+		free(line);
+		return (NULL);
+	}
+	free(line);
+	return (temp);
+}
+
 char	*ft_read(int fd, char *line)
 {
 	char	*get_buff;
-	char	*temp;
 	ssize_t	bytes_read;
 
 	if (line == NULL)
@@ -26,7 +40,7 @@ char	*ft_read(int fd, char *line)
 			return (NULL);
 		line[0] = '\0';
 	}
-	get_buff = (char *) malloc((ssize_t)BUFFER_SIZE + 1);
+	get_buff = (char *)malloc((ssize_t)BUFFER_SIZE + 1);
 	if (!get_buff)
 		return (free(line), NULL);
 	bytes_read = 1;
@@ -34,17 +48,11 @@ char	*ft_read(int fd, char *line)
 	{
 		bytes_read = read(fd, get_buff, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (free (get_buff), free(line), NULL);
+			return (free(get_buff), free(line), NULL);
 		get_buff[bytes_read] = '\0';
-		temp = ft_strjoin(line, get_buff);
-		if (!temp)
-		{
-			free(get_buff);
-			free(line);
+		line = append_buffer_to_line(line, get_buff);
+		if (!line)
 			return (NULL);
-		}
-		free(line);
-		line = temp;
 	}
 	return (free(get_buff), line);
 }
@@ -90,10 +98,7 @@ char	*ft_get_remain(char *left_str)
 	while (left_str[i] && left_str[i] != '\n')
 		i++;
 	if (!left_str[i])
-	{
-		free(left_str);
-		return (NULL);
-	}
+		return (free(left_str), NULL);
 	str = (char *) malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
 	if (!str)
 	{
@@ -113,8 +118,9 @@ char	*get_next_line(int fd, int flag)
 {
 	char		*full_line;
 	static char	*left_str;
+
 	if (flag == 1)
-		return(free(left_str), NULL);
+		return (free(left_str), NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	left_str = ft_read(fd, left_str);
