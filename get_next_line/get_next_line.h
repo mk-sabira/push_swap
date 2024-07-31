@@ -20,10 +20,12 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 3
 # endif
 
-char	*get_next_line(int fd);
+// char	*get_next_line(int fd);
+char	*get_next_line(int fd, int flag);
+
 // char	*ft_strjoin(char *s1, char *s2);
 // char	*ft_strchr(char *s, int c);
 // size_t	ft_strlen(char *str);

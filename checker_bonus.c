@@ -26,7 +26,8 @@ void    ft_apply_rest(t_stack **stack_a, t_stack **stack_b, char *get_op)
     else if (get_op[2] == 'r')
         ft_rrr(stack_a, stack_b);
 }
-char    *ft_apply_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
+
+int ft_apply_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
 {
     if (get_op[0] == 's' && get_op[1] == 'a' && get_op[2] == '\n')
         ft_sa(stack_a);
@@ -51,67 +52,67 @@ char    *ft_apply_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
         write(1, "wrong op", 9);
         free_stack(stack_a);
         free_stack(stack_b);
-        free(get_op);
-        
+        return (2);
     }
-    return (get_next_line(0));
+    return (0);
 }
-void ft_read_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
-{
-    char *temp;
 
-    if (get_op == NULL)
+int ft_read_oper(t_stack **stack_a, t_stack **stack_b, char *get_op)
+{
+    int result;
+
+    while(get_op)
     {
+        result = ft_apply_oper(stack_a, stack_b, get_op);
+        if (result != 0)
+        {
+            free(get_op);
+            get_op = NULL;
+            return result;
+        }
         free(get_op);
-        // return (NULL);
+        get_op = get_next_line(0,0);
     }
-    
-    while (get_op && *get_op != '\n')
-    {
-        temp = get_op;
-        get_op = ft_apply_oper(stack_a, stack_b, get_op);
-        free(temp);
-        temp = NULL;
-    }
-    if (*stack_b)
-        write (1, "KO\n", 3);
-    else if (!sorted_stack(*stack_a))
+    if (!sorted_stack(*stack_a))
          write (1, "KO\n", 3);
     else
          write (1, "OK\n", 3);
-    free(get_op);
-    get_op = NULL;
+    return (0);
 }
-int	main(int arc, char **arv)
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	char    *read_op;
-    // t_data  *data;
 
-	stack_a = NULL;
-	stack_b = NULL;
-    // data = NULL;
-	if (arc > 1)
-	{
-		valid_and_init(arc, arv, &stack_a);
-        read_op = get_next_line(0);
+int main(int arc, char **arv)
+{
+    t_stack *stack_a;
+    t_stack *stack_b;
+    char    *read_op;
+    int     result;
+
+    stack_a = NULL;
+    stack_b = NULL;
+    if (arc > 1)
+    {
+        valid_and_init(arc, arv, &stack_a);
+        read_op = get_next_line(0,0);
         if (!read_op && sorted_stack(stack_a))
             write(1, "OK\n", 3);
         else if (!read_op && !(sorted_stack(stack_a)))
-        {
-            // printf("%s\n", read_op);
             write(1, "KO\n", 3);
-        }
         else
         {
-            ft_read_oper(&stack_a, &stack_b, read_op);
-            // if (!stack_b)
-            //     write(1, "B is empty\n", 11);
-            // else
-            //     write(1, "B is not empty\n", 15);
+            result = ft_read_oper(&stack_a, &stack_b, read_op);
+            if (result == 1)
+            {
+                return (0);
+            }
+            else if (result == 2)
+            {
+                // free(read_op);
+                get_next_line(0, 1);
+                return (1);
+            }
         }
-	}
+    }
     free_stack(&stack_a);
-	return (0);
+    // free (read_op);
+    return (0);
 }

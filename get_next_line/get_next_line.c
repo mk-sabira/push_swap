@@ -109,11 +109,12 @@ char	*ft_get_remain(char *left_str)
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
 	char		*full_line;
 	static char	*left_str;
-
+	if (flag == 1)
+		return(free(left_str), NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	left_str = ft_read(fd, left_str);
