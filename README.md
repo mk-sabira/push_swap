@@ -7,16 +7,27 @@ The Push Swap project involves sorting a stack of integers using a set of stack 
 Operations:
 
 `sa`: Swap the top two elements of stack A.
+
 `sb`: Swap the top two elements of stack B.
+
 `ss`: Swap the top two elements of both stacks A and B.
+
 `pa`: Push the top element of stack B onto stack A.
+
 `pb`: Push the top element of stack A onto stack B.
+
 `ra`: Rotate stack A (move the top element to the bottom).
+
 `rb`: Rotate stack B (move the top element to the bottom).
+
 `rr`: Rotate both stacks A and B.
+
 `rra`: Reverse rotate stack A (move the bottom element to the top).
+
 `rrb`: Reverse rotate stack B (move the bottom element to the top).
+
 `rrr`: Reverse rotate both stacks A and B.
+
 
 🎮 Requirements:
 
